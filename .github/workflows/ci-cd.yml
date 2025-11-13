@@ -1,0 +1,27 @@
+name: Train and Build
+
+on: [push]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v3
+
+            - uses: actions/setup-python@v4
+              with:
+                python-version: "3.9"
+
+            - name: Installing Dependencies
+              run: |
+                pip install -r requirements.txt
+
+            - name: Training Model
+              run: |
+                python train_model.py
+            
+            - name: Building Docker Container
+              run: |
+                docker build -t model-ml .
+              
