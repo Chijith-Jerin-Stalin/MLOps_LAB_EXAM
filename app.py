@@ -1,6 +1,5 @@
 from flask import Flask
 import pickle
-from sklearn.metrics import accuracy_score
 from sklearn.model_selection import train_test_split
 import pandas as pd
 
@@ -26,8 +25,6 @@ def home():
 @app.route("/predict",methods=["GET"])
 def predict():
     pred = model.predict([[3,1930]])
-    y_pred = model.predict(X_test)
-    # acc = accuracy_score(y_test,y_pred)
     return f"House Price Prediction for 3 BHK and 1950 sqft_living: {pred}"
     
 
